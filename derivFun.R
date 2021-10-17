@@ -1,5 +1,6 @@
 #############################################
 ## Functions for derivatives of GAM models ##
+##        Author Dr. Gavin Simpson         ##
 #############################################
 Deriv <- function(mod, n = 200, eps = 1e-7, newdata) {
           if(isTRUE(all.equal(class(mod), "list")))
