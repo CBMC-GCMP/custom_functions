@@ -1,4 +1,5 @@
 ## For GAMM models from mgcv:::gamm
+## Author Dr. Gavin Simpson
 
 ## Model Checking function
 tsDiagGamm <- function(x, timevar, observed, f = 0.3, type = "normalized") {
