@@ -1,0 +1,25 @@
+
+search_gtrends <- function(x, keyword) {
+          require(countrycode)
+          
+          google_trends <- list()
+          
+          for (i in 1:length(x)) {
+                    dat <- gtrendsR::gtrends(keyword = keyword, 
+                                           geo = x[i],
+                                           onlyInterest = TRUE,
+                                           low_search_volume = TRUE,
+                                           time = "all")
+                    google_trends[[i]] <- as.data.frame(dat)
+          }
+          
+          
+          res <- do.call("rbind", google_trends) 
+          names(res) <- c('date', 'hits', 'keyword', 'geo', 'time', 'gprop', 'category')
+          res$hits <- replace_na(as.numeric(res$hits), 0)
+          res <- res %>% 
+                    mutate(
+                              hits = replace_na(as.numeric(res$hits), 0),
+                              country = countrycode(res$geo, origin = "iso2c", destination = "country.name"))
+          print(res)
+}
