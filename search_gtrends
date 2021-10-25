@@ -21,5 +21,4 @@ search_gtrends <- function(x, keyword) {
                     mutate(
                               hits = replace_na(as.numeric(res$hits), 0),
                               country = countrycode(res$geo, origin = "iso2c", destination = "country.name"))
-          print(res)
 }
